@@ -3,17 +3,23 @@ import java.util.HashSet;
 //File objects are very simple, they have a filepath, and a Set of relevant tags
 
 public class File {
+//    Path should be a complete filepath. e.g: 'C/Users/_____/Downloads/asdf.jpg'
     private String path;
     private HashSet<Tag> fileTags;
 
 //Constructors
-    public File(String initPath){
+    public File(FileManager fm, String initPath){
         path = initPath;
         fileTags = new HashSet<Tag>();
+        Tag pathTag = fm.createTag(initPath);
+        fileTags.add(pathTag);
     }
-    public File(String initPath, HashSet<Tag> initTags){
+    public File(FileManager fm, String initPath, HashSet<Tag> initTags){
         path = initPath;
         fileTags = initTags;
+        Tag pathTag = fm.createTag(initPath);
+        fileTags.add(pathTag);
+
     }
 
 //    Functions
@@ -25,6 +31,17 @@ public class File {
 //        Remove the passed tags to the
         fileTags.removeAll(tags);
     }
+
+
+//    Overrides
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){return true;}
+        if (!(obj instanceof File other)) return false;
+        return this.path.equals(other.path);
+    }
+    @Override
+    public int hashCode(){return path.hashCode();}
 
 
     //    Getters and Setters
