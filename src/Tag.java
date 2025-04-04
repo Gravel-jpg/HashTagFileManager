@@ -4,11 +4,14 @@
 //autofill dropdown menu. That way there is never any misinterpreted tags.
 
  public class Tag {
+//    name: the name of the tag!
     private final String name;
 
 
 //    Constructor
     public Tag(String initName){
+//      a simple constructor for a Tag object
+
         name = initName;
     }
 
